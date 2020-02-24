@@ -1,14 +1,19 @@
 package cn.baby_p2p.demo.pojo;
 
 
+import lombok.Data;
+
+import java.util.Date;
+
+@Data
 public class TRepayment {
 
   private String id;
   private String borrowId;
   private String borrowUserId;
   private String borrowTitle;
-  private java.sql.Timestamp deadline;
-  private java.sql.Timestamp repaymentTime;
+  private Date deadline;
+  private Date repaymentTime;
   private long totalAmount;
   private long principal;
   private long interest;
@@ -16,7 +21,7 @@ public class TRepayment {
   private long state;
   private long borrowType;
   private long repaymentType;
-  private java.sql.Timestamp createTime;
+  private Date createTime;
 
 
   public String getId() {
@@ -55,20 +60,20 @@ public class TRepayment {
   }
 
 
-  public java.sql.Timestamp getDeadline() {
+  public Date getDeadline() {
     return deadline;
   }
 
-  public void setDeadline(java.sql.Timestamp deadline) {
+  public void setDeadline(Date deadline) {
     this.deadline = deadline;
   }
 
 
-  public java.sql.Timestamp getRepaymentTime() {
+  public Date getRepaymentTime() {
     return repaymentTime;
   }
 
-  public void setRepaymentTime(java.sql.Timestamp repaymentTime) {
+  public void setRepaymentTime(Date repaymentTime) {
     this.repaymentTime = repaymentTime;
   }
 
@@ -136,11 +141,11 @@ public class TRepayment {
   }
 
 
-  public java.sql.Timestamp getCreateTime() {
+  public Date getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(java.sql.Timestamp createTime) {
+  public void setCreateTime(Date createTime) {
     this.createTime = createTime;
   }
 

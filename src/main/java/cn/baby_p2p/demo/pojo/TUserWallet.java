@@ -1,8 +1,11 @@
 package cn.baby_p2p.demo.pojo;
 
 
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class TUserWallet {
 
   private String accountId;

@@ -39,13 +39,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <!-- mybatis整合Springboot -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.1.1</version>
-        </dependency>
         <!-- START lombok 简化Java代码  START-->
         <dependency>
             <groupId>org.projectlombok</groupId>

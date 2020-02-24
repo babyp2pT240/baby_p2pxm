@@ -1,6 +1,11 @@
 package cn.baby_p2p.demo.pojo;
 
 
+import lombok.Data;
+
+import java.util.Date;
+
+@Data
 public class TUserAccount {
 
   private String id;
@@ -9,8 +14,8 @@ public class TUserAccount {
   private long accountStatus;
   private long accountType;
   private long fillUserinfo;
-  private java.sql.Timestamp lastLoginTime;
-  private java.sql.Timestamp createTime;
+  private Date lastLoginTime;
+  private Date createTime;
 
 
   public String getId() {
@@ -67,20 +72,20 @@ public class TUserAccount {
   }
 
 
-  public java.sql.Timestamp getLastLoginTime() {
+  public Date getLastLoginTime() {
     return lastLoginTime;
   }
 
-  public void setLastLoginTime(java.sql.Timestamp lastLoginTime) {
+  public void setLastLoginTime(Date lastLoginTime) {
     this.lastLoginTime = lastLoginTime;
   }
 
 
-  public java.sql.Timestamp getCreateTime() {
+  public Date getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(java.sql.Timestamp createTime) {
+  public void setCreateTime(Date createTime) {
     this.createTime = createTime;
   }
 
