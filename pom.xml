@@ -46,12 +46,6 @@
             <optional>true</optional>
         </dependency>
         <!-- END lombok 简化Java代码  END-->
-        <!--MySql jdbc驱动-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.1</version>
-        </dependency>
 
         <!--START 添加JDBC依赖 START-->
         <dependency>

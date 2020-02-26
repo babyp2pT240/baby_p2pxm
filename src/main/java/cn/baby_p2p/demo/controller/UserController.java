@@ -29,7 +29,6 @@ public class UserController {
     public Object login(@RequestParam("username")String username, @RequestParam("password")String password){
         Map map = new HashMap<String,Object>();
         TUserAccount tUserAccount = userService.login(username);
-        System.out.println(tUserAccount.getLastLoginTime());
         String passwordmd5 = md5Utils.toMD5(password);
         if (tUserAccount==null){
             map.put("code","400");
@@ -60,52 +59,52 @@ public class UserController {
         return faly;
     }
 
-//    @PostMapping("/register")
-//    @ResponseBody
-//    public Object register(@RequestParam("username")String username, @RequestParam("password")String password){
-//        String id = items.getItemID(32);
-//        Map map = new HashMap<String,Object>();
-//        String password5 = MD5Utils.toMD5(password);
-//        boolean faly = userService.register(id,username,password5);
-//        if (faly){
-//            map.put("code","200");
-//        }else {
-//            map.put("code","400");
-//            map.put("msg","添加失败");
-//        }
-//        return map;
-//    }
-//
-//    @PostMapping("/userinfo/get/{id}")
-//    @ResponseBody
-//    public Object userinfoget(@PathVariable("id")String id){
-//        Map map = new HashMap<String,Object>();
-//        TUserInfo tUserInfo = userService.getTUserInfo(id);
-//        System.out.println(id);
-//        if (tUserInfo==null){
-//            map.put("code","400");
-//            map.put("msg","查询失败");
-//        }else{
-//            map.put("code","200");
-//            map.put("data",tUserInfo);
-//        }
-//        return  map;
-//    }
-//
-//
-//
-//    @PostMapping("/wallet/get/{id}")
-//    @ResponseBody
-//    public Object walletget(@PathVariable("id")String id){
-//        Map map = new HashMap<String,Object>();
-//        TUserWallet tUserWallet = userService.getTUserWallet(id);
-//        if (tUserWallet==null){
-//            map.put("code","400");
-//            map.put("msg","查询失败");
-//        }else {
-//            map.put("code","200");
-//            map.put("data",tUserWallet);
-//        }
-//        return  map;
-//    }
+    @PostMapping("/register")
+    @ResponseBody
+    public Object register(@RequestParam("username")String username, @RequestParam("password")String password){
+        String id = items.getItemID(32);
+        Map map = new HashMap<String,Object>();
+        String password5 = MD5Utils.toMD5(password);
+        boolean faly = userService.register(id,username,password5);
+        if (faly){
+            map.put("code","200");
+        }else {
+            map.put("code","400");
+            map.put("msg","添加失败");
+        }
+        return map;
+    }
+
+    @PostMapping("/userinfo/get/{id}")
+    @ResponseBody
+    public Object userinfoget(@PathVariable("id")String id){
+        Map map = new HashMap<String,Object>();
+        TUserInfo tUserInfo = userService.getTUserInfo(id);
+        System.out.println(tUserInfo.getAccountId());
+        if (tUserInfo==null){
+            map.put("code","400");
+            map.put("msg","查询失败");
+        }else{
+            map.put("code","200");
+            map.put("data",tUserInfo);
+        }
+        return  map;
+    }
+
+
+
+    @PostMapping("/wallet/get/{id}")
+    @ResponseBody
+    public Object walletget(@PathVariable("id")String id){
+        Map map = new HashMap<String,Object>();
+        TUserWallet tUserWallet = userService.getTUserWallet(id);
+        if (tUserWallet==null){
+            map.put("code","400");
+            map.put("msg","查询失败");
+        }else {
+            map.put("code","200");
+            map.put("data",tUserWallet);
+        }
+        return  map;
+    }
 }
