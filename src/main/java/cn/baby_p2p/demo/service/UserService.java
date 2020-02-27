@@ -1,8 +1,10 @@
 package cn.baby_p2p.demo.service;
 
+import cn.baby_p2p.demo.dao.TBankCardRepository;
 import cn.baby_p2p.demo.dao.TUserAccountRepository;
 import cn.baby_p2p.demo.dao.TUserInfoRepository;
 import cn.baby_p2p.demo.dao.TUserWalletRepository;
+import cn.baby_p2p.demo.pojo.TBankCard;
 import cn.baby_p2p.demo.pojo.TUserAccount;
 import cn.baby_p2p.demo.pojo.TUserInfo;
 import cn.baby_p2p.demo.pojo.TUserWallet;
@@ -24,6 +26,9 @@ public class UserService {
 
     @Resource
     private TUserWalletRepository tUserWalletRepository;
+
+    @Resource
+    private TBankCardRepository tBankCardRepository;
 
     public TUserAccount login(String username){
         TUserAccount tUserAccount = new TUserAccount();
@@ -75,4 +80,23 @@ public class UserService {
         return  tUserWalletList.get(0);
     }
 
+    public TBankCard getTBankCard(String id){
+        QueryWrapper<TBankCard> queryWrapper = new QueryWrapper<TBankCard>();
+        queryWrapper.like("user_id",id);
+        List<TBankCard> tBankCardList = tBankCardRepository.selectList(queryWrapper);
+        if (tBankCardList.size()==0){
+            return  null;
+        }else {
+            return tBankCardList.get(0);
+        }
+    }
+
+    public boolean addTBankCard(TBankCard tBankCard){
+        boolean faly = false;
+        int result = tBankCardRepository.insert(tBankCard);
+        if (result>0){
+            faly = true;
+        }
+        return  faly;
+    }
 }
