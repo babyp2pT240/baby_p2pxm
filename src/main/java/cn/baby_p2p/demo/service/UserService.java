@@ -32,8 +32,7 @@ public class UserService {
 
     public TUserAccount login(String username){
         TUserAccount tUserAccount = new TUserAccount();
-        tUserAccount.setCreateTime(new Date());
-
+        tUserAccount.setLastLoginTime(new Date());
         QueryWrapper<TUserAccount> queryWrapper = new QueryWrapper<TUserAccount>();
         queryWrapper.like("username",username);
         List<TUserAccount> tUserAccountList = tUserAccountRepository.selectList(queryWrapper);
@@ -41,7 +40,11 @@ public class UserService {
         if (result>0){
             return tUserAccountList.get(0);
         }
-        return tUserAccountList.get(0);
+        if(tUserAccountList.size()==0){
+            return null;
+        }else {
+            return tUserAccountList.get(0);
+        }
     }
 
     public boolean register(String id,String username,String password){
@@ -52,11 +55,14 @@ public class UserService {
         tUserAccount.setId(id);
         tUserAccount.setUsername(username);
         tUserAccount.setPassword(password);
+        tUserAccount.setAccountStatus(1);
+        tUserAccount.setAccountType(1);
         tUserAccount.setCreateTime(new Date());
         tUserInfo.setAccountId(id);
         tUserInfo.setCreateTime(new Date());
         tUserWallet.setAccountId(id);
         tUserWallet.setCreateTime(new Date());
+        tUserInfo.setAvatar("nobody.jpg");
         int result1 = tUserAccountRepository.insert(tUserAccount);
         int result2 = tUserInfoRepository.insert(tUserInfo);
         int result3 = tUserWalletRepository.insert(tUserWallet);
@@ -94,6 +100,28 @@ public class UserService {
     public boolean addTBankCard(TBankCard tBankCard){
         boolean faly = false;
         int result = tBankCardRepository.insert(tBankCard);
+        if (result>0){
+            faly = true;
+        }
+        return  faly;
+    }
+
+    public boolean updateUserinfo(TUserInfo tUserInfo){
+        boolean faly = false;
+        QueryWrapper<TUserInfo> queryWrapper = new QueryWrapper<TUserInfo>();
+        queryWrapper.like("account_id",tUserInfo.getAccountId());
+        int result = tUserInfoRepository.update(tUserInfo,queryWrapper);
+        if (result>0){
+            faly = true;
+        }
+        return  faly;
+    }
+
+    public boolean updateUserAccount(TUserAccount tUserAccount){
+        boolean faly = false;
+        QueryWrapper<TUserAccount> queryWrapper = new QueryWrapper<TUserAccount>();
+        queryWrapper.like("id",tUserAccount.getId());
+        int result = tUserAccountRepository.update(tUserAccount,queryWrapper);
         if (result>0){
             faly = true;
         }
